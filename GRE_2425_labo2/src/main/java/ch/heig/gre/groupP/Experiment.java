@@ -1,4 +1,4 @@
-package ch.heig.gre.groupX;
+package ch.heig.gre.groupP;
 
 import ch.heig.gre.graph.GridGraph;
 import ch.heig.gre.graph.GridGraph2D;
@@ -67,6 +67,7 @@ public final class Experiment {
 
   public static void main(String[] args) {
     // TODO
+
   }
 
 

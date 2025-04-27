@@ -1,4 +1,4 @@
-package ch.heig.gre.groupX;
+package ch.heig.gre.groupP;
 
 import ch.heig.gre.gui.ChoiceItem;
 import ch.heig.gre.gui.MainViewController;
