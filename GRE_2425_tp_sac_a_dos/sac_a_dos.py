@@ -83,7 +83,7 @@ def experiment_once(N = 500, p_min=100, p_max=1000, q_ratio=0.25, U = 100, seed=
         print("\nComparison:")
         print("Relative time Gain from Heuristic Solver:", time_gain, "%")
         print("Relative value loss from Heuristic Solver:", value_loss, "%")
-    return max_value_exact, max_value_heuristic, exact_solver_time, heuristic_solver_time, selected_items_exact, selected_items_heuristic, time_gain, value_loss
+    return max_value_exact, max_value_heuristic, exact_solver_time, heuristic_solver_time, time_gain, value_loss
 
 
 def experiment(N=500, p_min=100, p_max=1000, q_ratio=0.25, U = 100, num_trials=10, verbose=False):
@@ -92,8 +92,11 @@ def experiment(N=500, p_min=100, p_max=1000, q_ratio=0.25, U = 100, num_trials=1
         result = experiment_once(N, p_min, p_max, q_ratio, U, seed=i)
         results.append(result)
 
-    avg_results = np.mean(results, axis=0)
-    std_results = np.std(results, axis=0)
+    # Convert to numpy array for calculating statistics
+    # Note that we've removed selected_items from the return value of experiment_once
+    results_array = np.array(results)
+    avg_results = np.mean(results_array, axis=0)
+    std_results = np.std(results_array, axis=0)
 
     if verbose:
         print("Average Results over", num_trials, "trials:")
@@ -101,8 +104,8 @@ def experiment(N=500, p_min=100, p_max=1000, q_ratio=0.25, U = 100, num_trials=1
         print("Max Value Heuristic:", avg_results[1], "±", std_results[1])
         print("Exact Solver Time:", avg_results[2], "±", std_results[2])
         print("Heuristic Solver Time:", avg_results[3], "±", std_results[3])
-        print("Time Gain from Heuristic Solver:", avg_results[6], "% ±", std_results[6])
-        print("Value Loss from Heuristic Solver:", avg_results[7], "% ±", std_results[7])
+        print("Time Gain from Heuristic Solver:", avg_results[4], "% ±", std_results[4])
+        print("Value Loss from Heuristic Solver:", avg_results[5], "% ±", std_results[5])
 
 if __name__ == "__main__":
     experiment(verbose=True)
